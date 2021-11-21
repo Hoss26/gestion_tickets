@@ -1,0 +1,35 @@
+{%  extends 'base.html.twig' %}
+{% block title%} Liste des Tickets par id={{id}} {% endblock %}
+{% block body %}
+    {% if tickets %}
+
+        {% for ticket in tickets  %}
+            {% if ticket.id==id %}
+                <table id="tickets" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>titre</th>
+                        <th>nom de personne </th>
+                        <th>description</th>
+                        <th>statut</th>
+                        <th>date de création</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ ticket.titre }}</td>
+                        <td>{{ ticket.nompersonne }}</td>
+                        <td>{{ ticket.description }}</td>
+                        <td>{{ ticket.statut }}</td>
+                        <td>{{ ticket.datecreation|date('Y-m-d') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% endif %}
+
+        {% endfor %}
+
+
+
+    {% endif %}
+{% endblock %}

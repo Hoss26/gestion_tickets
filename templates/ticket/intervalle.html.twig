@@ -1,0 +1,36 @@
+{%  extends 'base.html.twig' %}
+{% block title%} Liste des Tickets par intervalle de temps {% endblock %}
+{% block body %}
+    {% if tickets %}
+        <table id="tickets" class="table table-striped">
+            <thead>
+            <tr>
+                <th>titre</th>
+                <th>nom de personne</th>
+                <th>description</th>
+                <th>statut</th>
+                <th>date de création</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets  %}
+                {% if(dateMin < ticket.date|date('Y-m-d')) and ( ticket.date|date('Y-m-d') < dateMax)  %}
+                    <tr>
+                    <td>{{ ticket.titre }}</td>
+                    <td>{{ ticket.nompersonne }}</td>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.statut }}</td>
+                    <td>{{ ticket.datecreation|date('Y-m-d') }}</td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+
+        <div>
+            <h1>Aucun tickets</h1>
+        </div>
+
+    {% endif %}
+{% endblock %}
